@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-agent-langgraph-scaffold"
+version = "0.1.0"
+description = "A production-oriented LangGraph scaffold for multi-agent routing and tool orchestration."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "langgraph>=0.6.0",
+  "langchain-core>=0.3.0",
+]
+
+[project.scripts]
+multi-agent-demo = "multi_agent_scaffold.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -78,6 +78,51 @@ pip install -r requirements.txt
 If your environment needs a specific PyTorch build, install PyTorch first and then install the remaining requirements.
 
 ## Data preparation
+## Feature List
+
+| Index | Attribute Code  | Feature Name | Unit  | availability |
+| ----- | --------------- | ------------ | ----- |------------- |
+| 0     | 400002_TT101_AI | 进口压力         | Kpa   | 未使用 |
+| 1     | 400003_PT101_AI | 出口压力         | Kpa   | 
+| 2     | 400007_BKSS_FL1 | 1#流量计标况瞬时流量  | Nm3/h | 未使用 |
+| 3     | 400009_WD_FL1   | 1#流量计温度      | ℃     | 坏了 |
+| 4     | 400011_YL_FL1   | 1#流量计压力      | Kpa   | 坏了 |
+| 5     | 400013_BKLJ_FL1 | 1#流量计标况累计流量  | Nm3   | 未使用 |
+| 6     | 400015_BKSS_FL2 | 2#流量计标况瞬时流量  | Nm3/h | 未使用 |
+| 7     | 400017_BKLJ_FL2 | 2#流量计标况累计流量  | Nm3   | 未使用 |
+| 8     | 400019_WD_FL2   | 2#流量计温度      | ℃     |
+| 9     | 400021_YL_FL2   | 2#流量计压力      | Kpa   |
+| 10    | 400023_BKSS_FL3 | 3#流量计标况瞬时流量  | Nm3/h | 未使用 |
+| 11    | 400025_BKLJ_FL3 | 3#流量计标况累计流量  | Nm3   | 未使用 |
+| 12    | 400027_WD_FL3   | 3#流量计温度      | ℃     |
+| 13    | 400029_YL_FL3   | 3#流量计压力      | Kpa   |
+| 14    | 400037_XQYL_AI  | 新撬压力         | Kpa   |
+| 15    | 400039_XQXL_AI  | 新撬泄露         | LEL%  |
+| 16    | 400041_XQFW_AI  | 新撬阀位         | %     |
+| 17    | 400043_YL_FL4   | 4#流量计压力      | Kpa   |
+| 18    | 400045_WD_FL4   | 4#流量计温度      | ℃     |
+| 19    | 400047_BKSS_FL4 | 4#流量计标况瞬时流量  | Nm3/h |
+| 20    | 400049_BKLJ_FL4 | 4#流量计标况累计流量  | Nm3   |
+|       |                 |              |       |
+
+The data of sensors that are not available will be deleted.
+
+| Index | Attribute Code  | Feature Name | Unit  | availability |
+| ----- | --------------- | ------------ | ----- | ------------ |
+| 0     | 400003_PT101_AI | 出口压力         | Kpa   |              |
+| 1     | 400019_WD_FL2   | 2#流量计温度      | ℃     |              |
+| 2     | 400021_YL_FL2   | 2#流量计压力      | Kpa   |              |
+| 3     | 400027_WD_FL3   | 3#流量计温度      | ℃     |              |
+| 4     | 400029_YL_FL3   | 3#流量计压力      | Kpa   |              |
+| 5     | 400037_XQYL_AI  | 新撬压力         | Kpa   |              |
+| 6     | 400039_XQXL_AI  | 新撬泄露         | LEL%  |              |
+| 7     | 400041_XQFW_AI  | 新撬阀位         | %     |              |
+| 8     | 400043_YL_FL4   | 4#流量计压力      | Kpa   |              |
+| 9     | 400045_WD_FL4   | 4#流量计温度      | ℃     |              |
+| 10    | 400047_BKSS_FL4 | 4#流量计标况瞬时流量  | Nm3/h |              |
+| 11    | 400049_BKLJ_FL4 | 4#流量计标况累计流量  | Nm3   |              |
+
+The state columns are used to indicate whether a data point is an original sensor measurement or a generated value. If sensor data is interrupted and missing timestamps are filled through interpolation, the corresponding state columns are set to **0**. Likewise, if the original sensor value is **NaN**, the corresponding state column is also set to **0**. All valid original sensor measurements have their state columns set to **1**.
 
 The pipeline expects preprocessed NumPy arrays such as:
 

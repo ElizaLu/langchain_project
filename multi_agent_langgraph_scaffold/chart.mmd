@@ -1,0 +1,34 @@
+flowchart TD
+
+    A[用户输入] --> B[Router Node<br/>选择专家模型]
+
+    B --> C[Specialist Agent]
+
+    C --> D{选择工具<br/>Call Model}
+
+    D -- 是 --> E[执行工具<br/>ToolNode]
+    E --> C
+
+    D -- 否 --> F[结果总结<br/>Finalize]
+
+    F --> G[Ask User<br/>是否继续?]
+
+    G --> H["interrupt()"]
+
+    H --> I{用户选择}
+
+    I --> J["Command(resume)"]
+    J -- 继续当前agent --> C
+
+    J-- 重选agent --> B
+
+   %% I -- 结束 --> K[END] 
+
+    subgraph LangGraph
+        B
+        C
+        E
+        F
+        G
+        H
+    end
